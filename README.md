@@ -1,6 +1,6 @@
-# LangGraph vs Statechart (SCXML) — примеры 1–30
+# LangGraph vs Statechart (SCXML) 
 
-Этот проект содержит 30 примеров, где **одна и та же задача** реализована:
+Этот проект содержит примеры, где **одна и та же задача** реализована:
 - слева: на **LangGraph** (через `StateGraph`)
 - справа: на **Statechart** (SCXML + наш минимальный движок)
 
@@ -17,5 +17,3 @@ pip install -r requirements.txt
 В каждом примере:
 - `python run_langgraph.py`
 - `python run_statechart.py`
-
-Примеры 15, 17 и 19 усилены краевыми случаями (компенсации/приоритет событий/пороговый join).
