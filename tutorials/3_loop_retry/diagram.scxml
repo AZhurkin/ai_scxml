@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" xmlns:qt="http://www.qt.io/2015/02/scxml-ext" qt:editorversion="15.0.0">
+    <transition type="internal" event="cancel" target="Cancelled"/>
+    <state id="prepare" node="prepare">
+        <qt:editorinfo geometry="69.48;-49.97;-60;-50;120;100" scenegeometry="69.48;-49.97;9.48;-99.97;120;100"/>
+        <transition type="internal" event="done" target="payment">
+            <qt:editorinfo endTargetFactors="49.33;2.16" movePoint="33.91;9.78"/>
+        </transition>
+    </state>
+    <final id="Cancelled">
+        <qt:editorinfo geometry="69.48;344.76;-20;-20;40;40" scenegeometry="69.48;344.76;49.48;324.76;40;40"/>
+    </final>
+    <state id="payment">
+        <qt:editorinfo geometry="115.05;270.62;-386.83;-260.55;682.52;281.92" scenegeometry="115.05;270.62;-271.78;10.07;682.52;281.92"/>
+        <transition type="internal" event="pay.cancel" target="Cancelled">
+            <qt:editorinfo movePoint="-27.52;11.14" movePointCond="19.70;-4.45"/>
+        </transition>
+        <state id="receipt" node="receipt">
+            <qt:editorinfo geometry="-310.08;-38.06;-67.95;-50;181.95;100" scenegeometry="-195.03;232.56;-262.98;182.56;181.95;100"/>
+            <onentry>
+                <raise event="pay.success"/>
+            </onentry>
+            <transition type="external" event="done" target="final">
+                <qt:editorinfo movePoint="-12.45;15.72"/>
+            </transition>
+        </state>
+        <state id="charge" node="charge">
+            <qt:editorinfo geometry="-310.74;-161.97;-67.53;-50;127.53;100" scenegeometry="-195.69;108.65;-263.22;58.65;127.53;100"/>
+            <transition type="internal" event="pay.ok" target="receipt">
+                <qt:editorinfo movePoint="34.80;8.48" movePointCond="-81.50;39.12"/>
+            </transition>
+            <transition type="internal" event="pay.fail" target="wait">
+                <qt:editorinfo movePoint="7.82;-2.61" movePointCond="-16.94;-9.77"/>
+            </transition>
+        </state>
+        <state id="manual" node="manual">
+            <qt:editorinfo geometry="220.21;-162.61;-60;-50;120;100" scenegeometry="335.26;108.01;275.26;58.01;120;100"/>
+            <transition type="external" target="receipt" event="pay.ok">
+                <qt:editorinfo localGeometry="-107.79;120.08" endTargetFactors="87.65;45.53" movePoint="-91.07;40.63" movePointCond="0.64;0"/>
+            </transition>
+        </state>
+        <state id="wait" node="wait">
+            <qt:editorinfo geometry="-103.97;-160.70;-60;-50;129.06;100" scenegeometry="11.08;109.92;-48.92;59.92;129.06;100"/>
+            <transition type="internal" event="tick" target="charge">
+                <qt:editorinfo localGeometry="-107.56;30.99" movePoint="-16.70;37.74" movePointCond="-20.83;10.52"/>
+            </transition>
+            <transition type="internal" target="manual" cond="state.get('attempts',0) &gt;= config.get('max_attempts',3)"/>
+            <onentry>
+                <send event="tick" delay="1" target="wait"/>
+            </onentry>
+        </state>
+    </state>
+    <final id="final">
+        <qt:editorinfo geometry="-175.49;344.76;-20;-20;40;40" scenegeometry="-175.49;344.76;-195.49;324.76;40;40"/>
+    </final>
+</scxml>

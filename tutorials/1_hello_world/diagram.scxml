@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" xmlns:qt="http://www.qt.io/2015/02/scxml-ext" qt:editorversion="15.0.0" initial="initialize">
+    <qt:editorinfo initialGeometry="-48.76;-78.01;-20;-20;40;40"/>
+    <state id="initialize" node="initialize">
+        <qt:editorinfo geometry="58.83;-78.01;-60;-50;120;100" scenegeometry="58.83;-78.01;-1.17;-128.01;120;100"/>
+        <transition type="internal" event="done" target="search">
+            <qt:editorinfo movePointCond="17.84;1.69" movePoint="5.61;1.49"/>
+        </transition>
+    </state>
+    <state id="search" node="search">
+        <qt:editorinfo geometry="239.87;-78.01;-60;-50;120;100" scenegeometry="239.87;-78.01;179.87;-128.01;120;100"/>
+        <transition type="internal" event="done" target="finalize">
+            <qt:editorinfo movePointCond="-32.59;17.15" movePoint="7.98;0.84"/>
+        </transition>
+    </state>
+    <state id="finalize" node="finalize">
+        <qt:editorinfo geometry="444.93;-78.01;-110;-50;170;100" scenegeometry="444.93;-78.01;334.93;-128.01;170;100"/>
+        <transition type="internal" event="done" target="__final__">
+            <qt:editorinfo movePointCond="-25.60;0"/>
+        </transition>
+    </state>
+    <final id="__final__">
+        <qt:editorinfo geometry="568.44;-78.01;-20;-20;40;40" scenegeometry="568.44;-78.01;548.44;-98.01;40;40"/>
+    </final>
+</scxml>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" binding="early" xmlns:qt="http://www.qt.io/2015/02/scxml-ext" qt:editorversion="15.0.0">
+    <state id="intake" node="intake">
+        <qt:editorinfo scenegeometry="24.68;74.31;-35.32;24.31;120;100" geometry="24.68;74.31;-60;-50;120;100"/>
+        <transition type="internal" event="done" target="classify">
+            <qt:editorinfo movePoint="6.12;-0.68"/>
+        </transition>
+    </state>
+    <state id="classify" node="classify">
+        <qt:editorinfo scenegeometry="183.59;74.31;123.59;24.31;120;100" geometry="183.59;74.31;-60;-50;120;100"/>
+        <transition type="internal" event="route.billing" target="billing_agent">
+            <qt:editorinfo movePoint="-3.48;33.05"/>
+        </transition>
+        <transition type="internal" event="route.tech" target="tech_agent">
+            <qt:editorinfo movePointCond="-36.03;-31.27" movePoint="4.08;-5.44"/>
+        </transition>
+    </state>
+    <state id="billing_agent" node="billing_agent">
+        <qt:editorinfo scenegeometry="396.81;187.38;330.81;137.38;120;100" geometry="396.81;187.38;-66;-50;120;100"/>
+        <transition type="internal" event="done" target="compose_reply">
+            <qt:editorinfo movePointCond="40.78;36.03" movePoint="14.27;30.59"/>
+        </transition>
+    </state>
+    <state id="tech_agent" node="tech_agent">
+        <qt:editorinfo scenegeometry="390.81;-16.78;330.81;-66.78;120;100" geometry="390.81;-16.78;-60;-50;120;100"/>
+        <transition type="internal" event="done" target="compose_reply">
+            <qt:editorinfo movePoint="12.92;0"/>
+        </transition>
+    </state>
+    <state id="compose_reply" node="compose_reply">
+        <qt:editorinfo scenegeometry="610.47;74.31;536.47;24.31;148;100" geometry="610.47;74.31;-74;-50;148;100"/>
+        <transition type="internal" event="done" target="__final__">
+            <qt:editorinfo movePoint="6.12;0"/>
+        </transition>
+    </state>
+    <final id="__final__">
+        <qt:editorinfo scenegeometry="758.46;74.31;738.46;54.31;40;40" geometry="758.46;74.31;-20;-20;40;40"/>
+    </final>
+</scxml>
